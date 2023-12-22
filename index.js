@@ -1,21 +1,26 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var http = require("node:http");
-var mockData_1 = require("./utils/mockData");
-var port = 3030;
-var server = http.createServer(function (req, res) {
-    res.statusCode = 200;
-    res.setHeader('Content_Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.write('Hello from the server');
-    res.write(JSON.stringify(mockData_1.default));
-    res.end();
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import MockData from "./utils/mockData.js";
+const typeDefs = `#graphql
+type Athlete {
+    name: String
+    sex: String
+    specialty: String
+}
+type Query {
+    athletes: [Athlete]
+}
+`;
+const resolvers = {
+    Query: {
+        athletes: () => MockData,
+    },
+};
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
 });
-server.listen(port, function () {
-    try {
-        console.log('Server has now started and is listening on port: ' + port);
-    }
-    catch (error) {
-        console.log('Something went wrong', error);
-    }
+const { url } = await startStandaloneServer(server, {
+    listen: { port: 3030 },
 });
+console.log(`🚀  Server ready at: ${url}`);

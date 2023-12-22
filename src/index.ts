@@ -1,21 +1,32 @@
-import * as http from  'node:http';
-import MockData from "./utils/mockData";
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import MockData from "./utils/mockData.js";
 
-const port = 3030;
 
-const server = http.createServer((req:any, res:any) => {
-    res.statusCode = 200;
-    res.setHeader('Content_Type', 'application/json', );
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.write('Hello from the server');
-    res.write(JSON.stringify(MockData));
-    res.end();
+const typeDefs = `#graphql
+type Athlete {
+    name: String
+    sex: String
+    specialty: String
+}
+type Query {
+    athletes: [Athlete]
+}
+`;
+
+const resolvers = {
+    Query: {
+        athletes: () => MockData,
+    },
+};
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
 })
 
-server.listen(port,  (): void => {
-    try{
-        console.log('Server has now started and is listening on port: ' + port )
-    } catch(error) {
-        console.log('Something went wrong', error);
-    }
-})
+const { url } = await startStandaloneServer(server, {
+    listen: { port: 3030 },
+});
+
+console.log(`🚀  Server ready at: ${url}`);

@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +17,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@apollo/server": "^4.9.5",
     "@types/node": "^20.10.5",
-    "g": "^2.0.1"
+    "g": "^2.0.1",
+    "graphql": "^16.8.1"
   }
 }

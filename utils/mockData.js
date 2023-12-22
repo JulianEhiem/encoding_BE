@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var MockData = [
+const MockData = [
     {
         name: 'Noah Lyles',
         sex: 'M',
@@ -12,4 +10,4 @@ var MockData = [
         specialty: '1500m, 5000m'
     },
 ];
-exports.default = MockData;
+export default MockData;

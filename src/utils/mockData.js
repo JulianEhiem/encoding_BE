@@ -1,4 +1,4 @@
-const MockData:any = [
+const MockData = [
     {
         name: 'Noah Lyles',
         sex: 'M',
@@ -10,5 +10,4 @@ const MockData:any = [
         specialty: '1500m, 5000m'
     },
 ];
-
 export default MockData;
