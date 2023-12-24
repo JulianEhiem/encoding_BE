@@ -13,13 +13,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/pg": "^8.10.9",
     "nodemon": "^3.0.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@apollo/server": "^4.9.5",
     "@types/node": "^20.10.5",
+    "dotenv": "^16.3.1",
     "g": "^2.0.1",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "pg": "^8.11.3"
   }
 }
