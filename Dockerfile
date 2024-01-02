@@ -33,4 +33,4 @@ COPY . .
 EXPOSE 3030
 
 # Run the application.
-CMD npx nodemon index.js
+CMD npx nodemon db.js
